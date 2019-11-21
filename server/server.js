@@ -29,7 +29,7 @@ mongoose
     console.log("Not Connected to Database ERROR! ", err);
   });
 mongoose.Promise = global.Promise;
-
+mongoose.set('useFindAndModify', false);
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
