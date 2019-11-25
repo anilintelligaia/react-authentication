@@ -40,15 +40,15 @@ class Home extends Component {
     );
     this.onSignUp = this.onSignUp.bind(this);
     this.onSignIn = this.onSignIn.bind(this);
-    this.logout=this.logout.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   componentDidMount() {
-    const obj = getFromStorage('the_main_app');
+    const obj = getFromStorage("the_main_app");
     if (obj && obj.token) {
       const { token } = obj;
       // Verify token
-      fetch('/api/account/verify?token=' + token)
+      fetch("/api/account/verify?token=" + token)
         .then(res => res.json())
         .then(json => {
           if (json.success) {
@@ -58,13 +58,13 @@ class Home extends Component {
             });
           } else {
             this.setState({
-              isLoading: false,
+              isLoading: false
             });
           }
         });
     } else {
       this.setState({
-        isLoading: false,
+        isLoading: false
       });
     }
   }
@@ -185,29 +185,29 @@ class Home extends Component {
 
   logout() {
     this.setState({
-      isLoading: true,
+      isLoading: true
     });
-    const obj = getFromStorage('the_main_app');
+    const obj = getFromStorage("the_main_app");
     if (obj && obj.token) {
       const { token } = obj;
       // Verify token
-      fetch('/api/account/logout?token=' + token)
+      fetch("/api/account/logout?token=" + token)
         .then(res => res.json())
         .then(json => {
           if (json.success) {
             this.setState({
-              token: '',
+              token: "",
               isLoading: false
             });
           } else {
             this.setState({
-              isLoading: false,
+              isLoading: false
             });
           }
         });
     } else {
       this.setState({
-        isLoading: false,
+        isLoading: false
       });
     }
   }
@@ -244,17 +244,17 @@ class Home extends Component {
               value={signInEmail}
               onChange={this.onTextboxChangeSignInEmail}
             />
-            
+
             <input
               type="password"
               placeholder="Password"
               value={signInPassword}
               onChange={this.onTextboxChangeSignInPassword}
             />
-            
+
             <button onClick={this.onSignIn}>Sign In</button>
           </div>
-          
+
           <div className="signupBox">
             {signUpError ? <p class="error-msg">{signUpError}</p> : null}
 
@@ -267,7 +267,7 @@ class Home extends Component {
               onChange={this.onTextboxChangeSignUpFirstName}
               required
             />
-            
+
             <input
               type="text"
               placeholder="Last Name"
@@ -275,7 +275,7 @@ class Home extends Component {
               onChange={this.onTextboxChangeSignUpLastName}
               required
             />
-            
+
             <input
               type="email"
               placeholder="Email Id"
@@ -283,14 +283,14 @@ class Home extends Component {
               required
               onChange={this.onTextboxChangeSignUpEmail}
             />
-            
+
             <input
               type="password"
               placeholder="Password"
               value={signUpPassword}
               onChange={this.onTextboxChangeSignUpPassword}
             />
-            
+
             <button onClick={this.onSignUp}>Sign Up</button>
           </div>
         </div>
